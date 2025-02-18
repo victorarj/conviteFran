@@ -86,7 +86,11 @@
 <body>
     <h1>Anúncio da Fran 🎈</h1>
     <p>Estoure os balões para descobrir!</p>
-	<embed name="GoodEnough" src="background_music.mp3.mp3" loop="true" hidden="true" autostart="true">
+	<audio id="background-music" loop>
+	    <source src="background_music.mp3" type="audio/mpeg">
+	    Seu navegador não suporta áudio embutido.
+	</audio>
+	<button id="play-music" onclick="playMusic()">🔊 Tocar Música</button>
     <div id="game-area"></div>
     <img id="baby-image" src="Fran.png" alt="Imagem da bebê">
     <div id="invitation">🎉 Parabéns! 🎉<br><br> 🎂🎈 Você está convidado 🎂🎈<br>🎂🎈 para o meu aniversário! 🎂🎈<br><br>
@@ -97,6 +101,7 @@
 	<button id="download-button" onclick="downloadInvitation()">📩 Baixar Convite 📩</button>
     
     <script>
+	let musicStarted = false;
         let balloonsPopped = 0;
         function createBalloon() {
             const balloon = document.createElement("img");
@@ -146,6 +151,32 @@
             link.click();
             document.body.removeChild(link);
         }
+
+	    function playMusic() {
+	        const audio = document.getElementById("background-music");
+	
+	        if (!musicStarted) {
+	            // Creating an AudioContext to bypass autoplay restrictions
+	            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+	
+	            if (audioContext.state === "suspended") {
+	                audioContext.resume().then(() => {
+	                    console.log("AudioContext resumed.");
+	                    audio.play();
+	                }).catch(error => console.log("Autoplay blocked, user action needed:", error));
+	            } else {
+	                audio.play();
+	            }
+	
+	            musicStarted = true;
+	            document.getElementById("play-music").style.display = "none"; // Hide button after play
+	        }
+	    }
+	
+	    // Ensure music starts on first user interaction (click anywhere)
+	    document.addEventListener("click", () => {
+	        playMusic();
+	    }, { once: true });
         
         setInterval(createBalloon, 1000);
     </script>

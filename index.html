@@ -31,7 +31,7 @@
             cursor: pointer;
         }
 		
-		#invitation, #baby-image {
+	#invitation, #baby-image {
             display: none;
         }
 		
@@ -49,10 +49,11 @@
 		
         #baby-image {
             position: absolute;
-            width: 150px;
+            width: 200px;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+		animation: pulse 1.5s infinite;
         }
 		
         @keyframes pulse {
@@ -67,7 +68,7 @@
     <p>Estoure os balões para descobrir o convite!</p>
     <div id="game-area"></div>
     <img id="baby-image" src="Fran.png" alt="Imagem da bebê">
-    <div id="invitation">🎉 Parabéns! Você foi convidado para o aniversário da [Nome da sua filha]! 🎂🎈<br>📅 Data: [Data]<br>📍 Local: [Endereço]</div>
+    <div id="invitation">🎉 Parabéns! <br> Você foi convidado para o meu aniversário! 🎂🎈<br>📅 Data: [Data]<br>📍 Local: [Endereço]</div>
     
     <script>
         let balloonsPopped = 0;

@@ -152,31 +152,10 @@
             document.body.removeChild(link);
         }
 
-	    function playMusic() {
-	        const audio = document.getElementById("background-music");
-	
-	        if (!musicStarted) {
-	            // Creating an AudioContext to bypass autoplay restrictions
-	            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-	
-	            if (audioContext.state === "suspended") {
-	                audioContext.resume().then(() => {
-	                    console.log("AudioContext resumed.");
-	                    audio.play();
-	                }).catch(error => console.log("Autoplay blocked, user action needed:", error));
-	            } else {
-	                audio.play();
-	            }
-	
-	            musicStarted = true;
-	            document.getElementById("play-music").style.display = "none"; // Hide button after play
-	        }
-	    }
-	
-	    // Ensure music starts on first user interaction (click anywhere)
 	    document.addEventListener("click", () => {
-	        playMusic();
-	    }, { once: true });
+            const audio = document.getElementById("background-music");
+            audio.play().catch(error => console.log("Autoplay blocked, user action needed:", error));
+        }, { once: true });
         
         setInterval(createBalloon, 1000);
     </script>

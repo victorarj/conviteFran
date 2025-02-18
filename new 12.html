@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniversário de 1 Ano 🎂</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+        }
+		
+        h1 {
+            color: #e91e63;
+        }
+		
+        #game-area {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            background: url('https://images.ecency.com/p/RGgukq5E6HBNvuPpuJoWwfXPpi5ckcLESTB3nmmnDoU27PEHpzYjEzKTPMU3WWAzKyqHVcZ16chHW4cVQ7DfBzCiK6QEWvXCdQgqLKbfuVZioAxqHR5KwZjnDsNDzVU.png?format=match&mode=fit') no-repeat center center;
+            background-size: cover;
+        }
+		
+        .balloon {
+            width: 50px;
+            height: 70px;
+            position: absolute;
+            cursor: pointer;
+        }
+		
+		#invitation, #baby-image {
+            display: none;
+        }
+		
+        #invitation {
+            display: none;
+            font-size: 20px;
+            background: #ff4081;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(255, 64, 129, 0.8);
+            animation: pulse 1.5s infinite;
+        }
+		
+        #baby-image {
+            position: absolute;
+            width: 150px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+		
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Joguinho do Aniversário 🎈</h1>
+    <p>Estoure os balões para descobrir o convite!</p>
+    <div id="game-area"></div>
+    <img id="baby-image" src="https://drive.google.com/file/d/16ZmGkmlQgIwkOyiXqgLnef_oRpnFRchr/view?usp=sharing" alt="Imagem da bebê">
+    <div id="invitation">🎉 Parabéns! Você foi convidado para o aniversário da [Nome da sua filha]! 🎂🎈<br>📅 Data: [Data]<br>📍 Local: [Endereço]</div>
+    
+    <script>
+        let balloonsPopped = 0;
+        function createBalloon() {
+            const balloon = document.createElement("img");
+            balloon.src = "https://www.freeiconspng.com/uploads/birthday-party-balloon-png-image-13.png";
+            balloon.className = "balloon";
+            balloon.style.left = Math.random() * (window.innerWidth - 50) + "px";
+            balloon.style.bottom = "0px";
+            document.getElementById("game-area").appendChild(balloon);
+            
+            let moveUp = setInterval(() => {
+                let currentBottom = parseInt(balloon.style.bottom);
+                if (currentBottom > 500) {
+                    clearInterval(moveUp);
+                    balloon.remove();
+                } else {
+                    balloon.style.bottom = currentBottom + 2 + "px";
+                }
+            }, 30);
+            
+            balloon.onclick = function () {
+                balloon.remove();
+                balloonsPopped++;
+                if (balloonsPopped >= 5) {
+                    document.getElementById("invitation").style.display = "block";
+                    document.getElementById("baby-image").style.display = "block";
+                }
+            };
+        }
+        
+        setInterval(createBalloon, 1000);
+    </script>
+</body>
+</html>

@@ -82,6 +82,7 @@
 <body>
     <h1>Anúncio da Fran 🎈</h1>
     <p>Estoure os balões para descobrir!</p>
+	<embed name="GoodEnough" src="background_music.mp3.mp3" loop="true" hidden="true" autostart="true">
     <audio autoplay>
 	  <source src="background_music.mp3.mp3" type="audio/mpeg">
 	</audio>
@@ -144,10 +145,6 @@
             link.click();
             document.body.removeChild(link);
         }
-
-	    window.onload = function() {
-	    document.getElementById("background-music").play();
-	}
         
         setInterval(createBalloon, 1000);
     </script>

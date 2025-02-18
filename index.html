@@ -81,7 +81,7 @@
 <body onload="playMusic()">
     <h1>Anúncio da Fran 🎈</h1>
     <p>Estoure os balões para descobrir!</p>
-	<audio id="background-music" loop autoplay>
+	<audio id="background-music" loop>
 	<source src="background-music.mp3" type="audio/mpeg">
 	Seu navegador não suporta áudio embutido.
     </audio>
@@ -148,6 +148,7 @@
 	    function playMusic() {
             const music = document.getElementById("background-music");
             music.play();
+            document.body.onclick = null; // Ensure it only plays once
         }
         
         setInterval(createBalloon, 1000);

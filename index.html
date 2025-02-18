@@ -78,9 +78,13 @@
         }
     </style>
 </head>
-<body>
+<body onload="playMusic()">
     <h1>Anúncio da Fran 🎈</h1>
     <p>Estoure os balões para descobrir!</p>
+	<audio id="background-music" loop autoplay>
+	<source src="background-music.mp3" type="audio/mpeg">
+	Seu navegador não suporta áudio embutido.
+    </audio>
     <div id="game-area"></div>
     <img id="baby-image" src="Fran.png" alt="Imagem da bebê">
     <div id="invitation">🎉 Parabéns! 🎉<br><br> 🎂🎈 Você está convidado 🎂🎈<br>🎂🎈 para o meu aniversário! 🎂🎈<br><br>
@@ -139,6 +143,11 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+
+	    function playMusic() {
+            const music = document.getElementById("background-music");
+            music.play();
         }
         
         setInterval(createBalloon, 1000);
